@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main_style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="1" class="wrapper">
+            <a href="./bundang.html">
+                <img src="./css/img/bundang.jpg" style="width: 500px;">
+            </a>
+            <div class="cover">
+                <div class='title hidden'>성남 구도심</div>
+            </div>
+        </div>
+        <div id="2" class="wrapper">
+            <a href="./anyang.html">
+                <img src="./css/img/bundang.jpg" style="width: 500px;">
+            </a>
+            <div class="cover">
+                <div class='title hidden'>안양 구도심</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function blurAction() {
+
+        var bundang, anyang;
+
+        var init = function () {
+
+            bundang = document.getElementById('1');
+            anyang = document.getElementById('2');
+            _addEventHandlers();
+        }
+
+        var _addEventHandlers = function () {
+
+            bundang.addEventListener('mouseover', () => { _triggerBlur(0); });
+            bundang.addEventListener('mouseout', () => { _unBlur(0); })
+            anyang.addEventListener('mouseover', () => { _triggerBlur(1); });
+            anyang.addEventListener('mouseout', () => { _unBlur(1); })
+
+        }
+
+        var _triggerBlur = function (i) {
+
+            var img = document.getElementsByTagName('img')[i];
+            var title = document.getElementsByClassName('title')[i];
+
+            img.classList.remove('unblur');
+            img.classList.add('blur');
+            title.classList.remove('fade-out');
+            title.classList.add('fade-in');
+        }
+
+        var _unBlur = function (i) {
+
+            var img = document.getElementsByTagName('img')[i];
+            var title = document.getElementsByClassName('title')[i];
+
+            title.classList.add('hidden');
+            img.classList.replace('blur', 'unblur');
+            title.classList.replace('fade-in', 'fade-out');
+        }
+
+        return {
+            init: init
+        };
+    }
+
+    blurAction().init();
+</script>
+
+</html>
